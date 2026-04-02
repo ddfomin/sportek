@@ -35,12 +35,11 @@ def test_buy_random_bike(driver, authorization_url, email, password, logger):
     cart_page = CardPage(driver)
     name_bike, price_bike, total_price = cart_page.get_parameters_product()
 
+    assert name == name_bike, "Названия товара отличаются (каталог - корзина)"
+    assert price == price_bike, "Цена отличается (каталог - корзина)"
+    assert total_price == price, "Цена за товар и итоговая цена отличаются"
+
     cart_page.fill_personal_data()
     cart_page.check_button_buy()
 
     logger.info("Тест пройден")
-
-    #assert name == name_bike, "Названия товара отличаются (каталог - корзина)"
-    #assert price == price_bike, "Цена отличается (каталог - корзина)"
-    #assert total_price == price, "Цена за товар и итоговая цена отличаются"
-
